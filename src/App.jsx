@@ -4,9 +4,9 @@ import Login from "./pages/Login"
 import Cadastro from "./pages/Cadastro"
 import Ajuda from "./pages/Ajuda"
 import NotFound from "./pages/NotFound"
+import Rodape from "./components/Rodape"
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
 import { HashRouter, Routes, Route } from "react-router-dom"
-import Rodape from "./components/Rodape"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
