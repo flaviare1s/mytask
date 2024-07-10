@@ -4,11 +4,13 @@ import Login from "./pages/Login"
 import Cadastro from "./pages/Cadastro"
 import Ajuda from "./pages/Ajuda"
 import NotFound from "./pages/NotFound"
+import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Rodape from "./components/Rodape"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
-function App() {
+const App = () => {
 
   return (
     <>
@@ -21,7 +23,9 @@ function App() {
             <Route path='/cadastro' element={<Cadastro />} />
             <Route path='/ajuda' element={<Ajuda />} />
             <Route path='*' element={<NotFound />} />
+            <Route path='politicaprivacidade' element={<PoliticaPrivacidade />} />
           </Routes>
+          <Rodape />
         </BrowserRouter>
       </div>
     </>
