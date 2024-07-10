@@ -5,7 +5,7 @@ import Cadastro from "./pages/Cadastro"
 import Ajuda from "./pages/Ajuda"
 import NotFound from "./pages/NotFound"
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { HashRouter, Routes, Route } from "react-router-dom"
 import Rodape from "./components/Rodape"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <>
       <div>
-        <BrowserRouter>
+        <HashRouter>
           <Menu />
           <Routes>
             <Route path='/' element={<Home />} />   
@@ -26,7 +26,7 @@ const App = () => {
             <Route path='politicaprivacidade' element={<PoliticaPrivacidade />} />
           </Routes>
           <Rodape />
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </>
   )
