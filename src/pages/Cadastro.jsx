@@ -15,18 +15,18 @@ const Cadastro = () => {
         <hr />
         <div>
           <label htmlFor="nome">Nome</label>
-          <input type="text" id="nome" className="form-control" {...register('nome', {required: true, maxLength: 150})} />
-          {errors.nome && <small className="invalid">Nome é invalido</small>}
+          <input type="text" id="nome" className="form-control" {...register('nome', {required: 'Nome obrigatório', maxLength: {value: 100, message: 'Maximo 100 caracteres'}})} />
+          {errors.nome && <small className="invalid">{errors.nome.message}</small>}
         </div>
         <div>
           <label htmlFor="email">E-mail</label>
-          <input type="email" id="email" className="form-control" {...register('email', {required: true, pattern:/[\w.-]+@[\w-]+\.[\w-.]+/gi})} />
-          {errors.email && <small className="invalid">E-mail inválido</small>}
+          <input type="email" id="email" className="form-control" {...register('email', {required: 'E-mail obrigatório', pattern: {value: /[\w.-]+@[\w-]+\.[\w-.]+/gi, message: 'E-mail inválido'}})} />
+          {errors.email && <small className="invalid">{errors.email.message}</small>}
         </div>
         <div>
           <label htmlFor="senha">Senha</label>
-          <input type="password" id="senha" className="form-control" {...register('senha', {required: true, minLength: 6})} />
-          {errors.senha && <small className="invalid">Senha inválida</small>}
+          <input type="password" id="senha" className="form-control" {...register('senha', {required: 'Senha obrigatória', minLength: {value: 6, message: 'Minimo 6 caracteres'}})} />
+          {errors.senha && <small className="invalid">{errors.senha.message}</small>}
         </div>
         <Button variant="dark" className="mt-1 w-100" type="submit">Cadastrar</Button>
         <Button variant="danger" className="mt-1 w-100" type="button">Cadastrar com o Google</Button>
