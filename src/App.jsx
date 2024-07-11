@@ -5,6 +5,7 @@ import Cadastro from "./pages/Cadastro"
 import Ajuda from "./pages/Ajuda"
 import NotFound from "./pages/NotFound"
 import Rodape from "./components/Rodape"
+import NovaTarefa from "./pages/NovaTarefa"
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
 import { HashRouter, Routes, Route } from "react-router-dom"
 
@@ -22,8 +23,9 @@ const App = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/cadastro' element={<Cadastro />} />
             <Route path='/ajuda' element={<Ajuda />} />
-            <Route path='*' element={<NotFound />} />
+            <Route path='/novatarefa' element={<NovaTarefa />} />
             <Route path='politicaprivacidade' element={<PoliticaPrivacidade />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
           <Rodape />
         </HashRouter>
