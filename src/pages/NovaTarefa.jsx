@@ -1,30 +1,39 @@
 import { Button } from "react-bootstrap"
+import { useForm } from "react-hook-form"
 
 const NovaTarefa = () => {
+  const { register, handleSubmit, formState: {errors} } = useForm()
+
+  function salvarTarefa(data) {
+    console.log(data)
+  }
+
   return (
     <main>
-      <form className="form-section">
+      <form className="form-section" onSubmit={handleSubmit(salvarTarefa)}>
         <h1>Adicionar Nova Tarefa</h1>
         <hr />
         <div>
           <label htmlFor="titulo">Título</label>
-          <input type="text" id="titulo" className="form-control" />
+          <input type="text" id="titulo" className="form-control" {...register('titulo', { required: true, maxLength: 200 })} />
+          {errors.titulo && <small className="invalid">O título é inválido</small>}
         </div>
         <div>
           <label htmlFor="descricao">Descricão</label>
-          <textarea id="descricao" className="form-control" />
+          <textarea id="descricao" className="form-control" {...register('descricao', { required: true })} />
+          {errors.descricao && <small className="invalid">Você precisa adicionar uma descrição</small>}
         </div>
         <div>
           <label htmlFor="dataConclusao"></label>
-          <input type="date" id="dataConclusao" className="form-control" />
+          <input type="date" id="dataConclusao" className="form-control" {...register('dataConclusao')} />
         </div>
         <div className="form-check">
-          <input type="checkbox" id="concluido" className="form-check-input" />
+          <input type="checkbox" id="concluido" className="form-check-input" {...register('concluido')} />
           <label htmlFor="concluido" className="form-check-label">Concluído?</label>
         </div>
         <div>
           <label htmlFor="categoria">Categoria</label>
-          <select id="categoria" className="form-select">
+          <select id="categoria" className="form-select" {...register('categoria')}>
             <option value="Trabalho">Trabalho</option>
             <option value="Estudos">Estudos</option>
             <option value="Projetos">Projetos</option>
