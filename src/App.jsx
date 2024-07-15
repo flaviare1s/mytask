@@ -8,6 +8,8 @@ import Rodape from "./components/Rodape"
 import NovaTarefa from "./pages/NovaTarefa"
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
 import { HashRouter, Routes, Route } from "react-router-dom"
+import Tarefas from "./pages/Tarefas"
+import { Toaster } from "react-hot-toast"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
@@ -23,12 +25,14 @@ const App = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/cadastro' element={<Cadastro />} />
             <Route path='/ajuda' element={<Ajuda />} />
-            <Route path='/novatarefa' element={<NovaTarefa />} />
+            <Route path='/tarefas' element={<Tarefas />} />
+            <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
             <Route path='politicaprivacidade' element={<PoliticaPrivacidade />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
           <Rodape />
         </HashRouter>
+        <Toaster position="bottom-right" />
       </div>
     </>
   )
