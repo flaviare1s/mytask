@@ -1,11 +1,24 @@
 import { Button } from "react-bootstrap"
 import { useForm } from "react-hook-form"
+import { addTarefa } from "../firebase/tarefa"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const NovaTarefa = () => {
   const { register, handleSubmit, formState: {errors} } = useForm()
 
+  const navigate = useNavigate()
+
+  // os dados são passados para a função de inserir:
   function salvarTarefa(data) {
-    console.log(data)
+    addTarefa(data)
+    .then(() => { // then: aguarda a inserção da tarefa para então exibir o toast
+      toast.success('Tarefa adicionada com sucesso!') // Funcionalidade da biblioteca React Hot Toast
+      // Redirecionar o usuário para /tarefas:
+      navigate('/tarefas')
+    }).catch(() => { // catch é executado caso haja algum erro na inserção da tarefa
+      toast.error('Erro ao adicionar tarefa!')
+    })
   }
 
   return (
