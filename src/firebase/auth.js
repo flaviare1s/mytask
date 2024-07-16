@@ -4,7 +4,7 @@
   // LOGIN - entrar com e-mail e senha
   // LOGOUT
 
-import { createUserWithEmailAndPassword, signInWithPopup, updateProfile, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, updateProfile, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./config";
 
   // Cadastrar usuário com e-mail e senha:
@@ -21,4 +21,9 @@ import { auth } from "./config";
     const provider = new GoogleAuthProvider()
     // Abre um pop-up na tela com o login do Google
     await signInWithPopup(auth, provider)
+  }
+
+  // LOGIN - entrar com e-mail e senha
+  export async function loginUsuario(email, senha) {
+    await signInWithEmailAndPassword(auth, email, senha)
   }

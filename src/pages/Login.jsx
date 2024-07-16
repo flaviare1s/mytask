@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap"
 import {useForm} from "react-hook-form"
-import { entrarGoogle } from "../firebase/auth"
+import { entrarGoogle, loginUsuario } from "../firebase/auth"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
@@ -11,7 +11,12 @@ const Login = () => {
 
   function entrar(data) {
     // data é um objeto com os dados do formulário
-    console.log(data)
+    loginUsuario(data.email, data.senha).then(() => {
+      toast.success('Bem-vindo(a) ao MyTask!')
+      navigate('/tarefas')
+    }).catch((error) => {
+      toast.error(`Um erro aconteceu: ${error.code}`)
+    })
   }
 
   function handleEntrarGoogle() {
