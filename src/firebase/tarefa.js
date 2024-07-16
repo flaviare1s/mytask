@@ -21,6 +21,7 @@ export async function addTarefa(data) {
 }
 
 // READ:
+//Listar todas as tarefas
 export async function getTarefas() {
   // Snapshot é o resultado da busca na coleção de tarefas
   const snapshot = await getDocs(tarefasCol)
@@ -34,15 +35,8 @@ export async function getTarefas() {
   return tarefas
 }
 
-// UPDATE:
-export async function updateTarefa(id, data) {
-  // Cria uma referência para um documento da coleção
-  const tarefaDoc = doc(tarefasCol, id)
-  await updateDoc(tarefaDoc, data)
-}
 
-
-// Pegar uma tarefa
+// Listar uma tarefa
 export async function getTarefa(id) {
   // Cria uma referência para um documento da coleção
   const tarefaDoc = doc(tarefasCol, id)
@@ -51,6 +45,13 @@ export async function getTarefa(id) {
 
   // Retorna os dados dentro do resultado
   return tarefa.data()
+}
+
+// UPDATE:
+export async function updateTarefa(id, data) {
+  // Cria uma referência para um documento da coleção
+  const tarefaDoc = doc(tarefasCol, id)
+  await updateDoc(tarefaDoc, data)
 }
 
 // DELETE:

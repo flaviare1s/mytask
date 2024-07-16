@@ -1,11 +1,24 @@
 import { Button } from "react-bootstrap"
 import { useForm } from "react-hook-form"
+import { cadastrarUsuario } from "../firebase/auth"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const Cadastro = () => {
   const { register, handleSubmit, formState: {errors} } = useForm()
+   const navigate = useNavigate()
 
   function cadastrar(data) {
-    console.log(data)
+    cadastrarUsuario(data.nome, data.email, data.senha).then(() => {
+      toast.success(`Bem-vindo(a) ${data.nome}!`)
+      navigate('/tarefas')
+    }).catch((error) => {
+      toast.error(`Um erro aconteceu: ${error.code}`)
+    })
+  }
+
+  function handleEntrarGoogle() {
+    console.log("Entrar com o Google")
   }
 
   return (
@@ -29,7 +42,7 @@ const Cadastro = () => {
           {errors.senha && <small className="invalid">{errors.senha.message}</small>}
         </div>
         <Button variant="dark" className="mt-1 w-100" type="submit">Cadastrar</Button>
-        <Button variant="danger" className="mt-1 w-100" type="button">Cadastrar com o Google</Button>
+        <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Cadastrar com o Google</Button>
       </form>
     </main>
   )
