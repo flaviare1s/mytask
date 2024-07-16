@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap"
 import { useForm } from "react-hook-form"
-import { cadastrarUsuario } from "../firebase/auth"
+import { cadastrarUsuario, entrarGoogle } from "../firebase/auth"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 
@@ -18,7 +18,10 @@ const Cadastro = () => {
   }
 
   function handleEntrarGoogle() {
-    console.log("Entrar com o Google")
+    entrarGoogle().then(() => {
+      toast.success('Bem-vindo(a) ao MyTask!')
+      navigate('/tarefas')
+    })
   }
 
   return (
