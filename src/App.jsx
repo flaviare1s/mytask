@@ -10,6 +10,7 @@ import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import Tarefas from "./pages/Tarefas"
 import { Toaster } from "react-hot-toast"
+import EditarTarefa from "./pages/EditarTarefa"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path='/ajuda' element={<Ajuda />} />
             <Route path='/tarefas' element={<Tarefas />} />
             <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
+            <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
             <Route path='politicaprivacidade' element={<PoliticaPrivacidade />} />
             <Route path='*' element={<NotFound />} />
           </Routes>

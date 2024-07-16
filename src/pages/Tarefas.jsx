@@ -1,5 +1,5 @@
 import { Badge, Button, Card, Container } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { deleteTarefa, getTarefas } from "../firebase/tarefa"
 import { useEffect, useState } from "react"
 import Loader from "../components/Loader"
@@ -7,6 +7,7 @@ import toast from "react-hot-toast"
 
 const Tarefas = () => {
   const [tarefas, setTarefas] = useState(null)
+  const navigate = useNavigate()
 
   function carregarDados() {
     // O then devolve a lista de tarefas da coleção
@@ -50,8 +51,14 @@ const Tarefas = () => {
                 <div className="mb-2">
                   {tarefa.concluido ? <Badge bg="success">Concluído</Badge> : <Badge bg="warning">Pendente</Badge>}
                 </div>
-                <Button variant="dark" className="me-2">Editar</Button>
-                <Button variant="danger" onClick={() => deletarTarefa(tarefa.id)}>Excluir</Button>
+                <div className="btn-group" role="group">
+                  <Button className="d-flex align-items-center justify-content-center" variant="outline-dark" onClick={() => navigate(`/tarefas/editar/${tarefa.id}`)}>
+                    <span className="material-symbols-outlined">edit_note</span>
+                  </Button>
+                  <Button className="d-flex align-items-center justify-content-center" variant="outline-danger" onClick={() => deletarTarefa(tarefa.id)}>
+                  <span className="material-symbols-outlined">delete</span>
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           })}
