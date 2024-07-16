@@ -44,9 +44,7 @@ const Tarefas = () => {
               <Card.Body>
                 <Card.Title>{tarefa.titulo}</Card.Title>
                 <Card.Text>{tarefa.descricao}</Card.Text>
-                <Card.Text>
-                  {tarefa.dataConclusao && <p>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</p>}
-                </Card.Text>
+                {tarefa.dataConclusao && <Card.Text>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</Card.Text>}
                 <Badge bg="info">{tarefa.categoria}</Badge>
                 <div className="mb-2">
                   {tarefa.concluido ? <Badge bg="success">Concluído</Badge> : <Badge bg="warning">Pendente</Badge>}
