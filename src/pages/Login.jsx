@@ -1,12 +1,24 @@
 import { Button } from "react-bootstrap"
 import {useForm} from "react-hook-form"
+import { entrarGoogle } from "../firebase/auth"
+import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const Login = () => {
   const { register, handleSubmit, formState: {errors} } = useForm()
 
+  const navigate = useNavigate()
+
   function entrar(data) {
     // data é um objeto com os dados do formulário
     console.log(data)
+  }
+
+  function handleEntrarGoogle() {
+    entrarGoogle().then(() => {
+      toast.success('Bem-vindo(a) ao MyTask!')
+      navigate('/tarefas')
+    })
   }
 
   return (
@@ -25,7 +37,7 @@ const Login = () => {
           {errors.senha && <small className="invalid">{errors.senha.message}</small>}
         </div>
         <Button variant="dark" className="mt-1 w-100" type="submit">Entrar</Button>
-        <Button variant="danger" className="mt-1 w-100" type="button">Entrar com o Google</Button>
+        <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Entrar com o Google</Button>
       </form>
     </main>
   )
