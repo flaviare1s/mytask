@@ -1,8 +1,9 @@
 import { Badge, Button, Card, Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { getTarefas } from "../firebase/tarefa"
+import { deleteTarefa, getTarefas } from "../firebase/tarefa"
 import { useEffect, useState } from "react"
 import Loader from "../components/Loader"
+import toast from "react-hot-toast"
 
 const Tarefas = () => {
   const [tarefas, setTarefas] = useState(null)
@@ -12,6 +13,16 @@ const Tarefas = () => {
     getTarefas().then((resultados) => {
       setTarefas(resultados)
     })
+  }
+
+  function deletarTarefa(id) {
+    const deletar = confirm('Tem certeza?')
+    if(deletar) {
+      deleteTarefa(id).then(() => {
+        toast.success('Tarefa removida!')
+        carregarDados() // atualizar a lista e renderizar novamente
+      })
+    }
   }
 
   // Executar uma função apenas quando o componente é renderizado a primeira vez:
@@ -32,12 +43,15 @@ const Tarefas = () => {
               <Card.Body>
                 <Card.Title>{tarefa.titulo}</Card.Title>
                 <Card.Text>{tarefa.descricao}</Card.Text>
+                <Card.Text>
+                  {tarefa.dataConclusao && <p>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</p>}
+                </Card.Text>
                 <Badge bg="info">{tarefa.categoria}</Badge>
                 <div className="mb-2">
                   {tarefa.concluido ? <Badge bg="success">Concluído</Badge> : <Badge bg="warning">Pendente</Badge>}
                 </div>
                 <Button variant="dark" className="me-2">Editar</Button>
-                <Button variant="danger">Excluir</Button>
+                <Button variant="danger" onClick={() => deletarTarefa(tarefa.id)}>Excluir</Button>
               </Card.Body>
             </Card>
           })}
