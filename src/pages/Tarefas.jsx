@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Container } from "react-bootstrap"
 import { Link, Navigate, useNavigate } from "react-router-dom"
-import { deleteTarefa, getTarefas, getTarefasUsuario } from "../firebase/tarefa"
+import { deleteTarefa, getTarefasUsuario } from "../firebase/tarefa"
 import { useContext, useEffect, useState } from "react"
 import Loader from "../components/Loader"
 import toast from "react-hot-toast"
@@ -41,7 +41,7 @@ const Tarefas = () => {
 
   return (
     <main>
-      <Container className="mt-5">
+      <Container className="mt-5 d-flex flex-column align-items-center justify-content-center">
         <h1>Suas tarefas</h1>
         <hr />
         <Link className="btn btn-dark" to="/tarefas/adicionar">Adicionar tarefa</Link>
@@ -70,7 +70,7 @@ const Tarefas = () => {
           })}
         </section> 
         :
-        <Loader />}
+        <Loader className="mt-5" />}
       </Container>
     </main>
   )

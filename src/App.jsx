@@ -15,17 +15,30 @@ import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./firebase/config"
 import { UserContext } from "./contexts/UserContext"
+import Loader from "./components/Loader"
+import { Container } from "react-bootstrap"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
 const App = () => {
   const [usuarioLogado, setUsuarioLogado] = useState(null)
+  const [loading, setLoadind] = useState(true)
 
   useEffect(() => {
+    // Verificar se o usuário está logado
     onAuthStateChanged(auth, (user) => {
     setUsuarioLogado(user)
+    setLoadind(false)
     })
   }, [])
+
+  if(loading) {
+    return (
+    <Container className="d-flex justify-content-center align-items-center vh-100">
+      <Loader />
+    </Container>
+    )
+  }
 
   return (
     <>
