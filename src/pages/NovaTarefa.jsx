@@ -2,10 +2,14 @@ import { Button } from "react-bootstrap"
 import { useForm } from "react-hook-form"
 import { addTarefa } from "../firebase/tarefa"
 import toast from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { UserContext } from "../contexts/UserContext"
 
 const NovaTarefa = () => {
   const { register, handleSubmit, formState: {errors} } = useForm()
+
+  const usuario = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -19,6 +23,10 @@ const NovaTarefa = () => {
     }).catch(() => { // catch é executado caso haja algum erro na inserção da tarefa
       toast.error('Erro ao adicionar tarefa!')
     })
+  }
+
+  if (usuario === null) {
+    return <Navigate to='/login' />
   }
 
   return (

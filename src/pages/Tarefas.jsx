@@ -1,12 +1,14 @@
 import { Badge, Button, Card, Container } from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { deleteTarefa, getTarefas } from "../firebase/tarefa"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Loader from "../components/Loader"
 import toast from "react-hot-toast"
+import { UserContext } from "../contexts/UserContext"
 
 const Tarefas = () => {
   const [tarefas, setTarefas] = useState(null)
+  const usuario = useContext(UserContext)
   const navigate = useNavigate()
 
   function carregarDados() {
@@ -30,6 +32,10 @@ const Tarefas = () => {
   useEffect(() => {
     carregarDados()
   }, [])
+
+  if(usuario === null) {
+    return <Navigate to="/login" />
+  }
 
   return (
     <main>
