@@ -14,6 +14,7 @@ import EditarTarefa from "./pages/EditarTarefa"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./firebase/config"
+import { UserContext } from "./contexts/UserContext"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
@@ -28,24 +29,24 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <HashRouter>
-          <Menu usuario={usuarioLogado} />
-          <Routes>
-            <Route path='/' element={<Home />} />   
-            <Route path='/login' element={<Login />} />
-            <Route path='/cadastro' element={<Cadastro />} />
-            <Route path='/ajuda' element={<Ajuda />} />
-            <Route path='/tarefas' element={<Tarefas />} />
-            <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
-            <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
-            <Route path='/politicaprivacidade' element={<PoliticaPrivacidade />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          <Rodape />
-        </HashRouter>
-        <Toaster position="bottom-right" />
-      </div>
+        <UserContext.Provider value={ usuarioLogado }>
+          <HashRouter>
+            <Menu />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/cadastro' element={<Cadastro />} />
+              <Route path='/ajuda' element={<Ajuda />} />
+              <Route path='/tarefas' element={<Tarefas />} />
+              <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
+              <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
+              <Route path='/politicaprivacidade' element={<PoliticaPrivacidade />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+            <Rodape />
+          </HashRouter>
+          <Toaster position="bottom-right" />
+        </UserContext.Provider>
     </>
   )
 }

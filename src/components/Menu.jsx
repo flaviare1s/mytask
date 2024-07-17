@@ -2,11 +2,14 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { logout } from "../firebase/auth"
+import { useContext } from "react"
+import { UserContext } from "../contexts/UserContext"
 
 // Link => esse componente habilita o SPA (Single Page Application)
 // OBS.: Se houver links externos, utilize a tag a e não o Link
 
-const Menu = ({ usuario }) => {
+const Menu = () => {
+	const usuario = useContext(UserContext)
 	const navigate = useNavigate()
 
 	function handleLogout() {
