@@ -15,6 +15,9 @@ const NovaTarefa = () => {
 
   // os dados são passados para a função de inserir:
   function salvarTarefa(data) {
+    // Associa o ID do usuário à tarefa criada:
+    data.idUsuario = usuario.uid
+    
     addTarefa(data)
     .then(() => { // then: aguarda a inserção da tarefa para então exibir o toast
       toast.success('Tarefa adicionada com sucesso!') // Funcionalidade da biblioteca React Hot Toast
