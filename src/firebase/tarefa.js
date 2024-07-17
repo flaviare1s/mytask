@@ -45,6 +45,8 @@ export async function getTarefasUsuario(idUsuario) {
   snapshot.forEach((doc) => {
     tarefas.push({...doc.data(), id: doc.id})
   })
+
+  return tarefas
 }
 
 // Listar uma tarefa

@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Container } from "react-bootstrap"
 import { Link, Navigate, useNavigate } from "react-router-dom"
-import { deleteTarefa, getTarefas } from "../firebase/tarefa"
+import { deleteTarefa, getTarefas, getTarefasUsuario } from "../firebase/tarefa"
 import { useContext, useEffect, useState } from "react"
 import Loader from "../components/Loader"
 import toast from "react-hot-toast"
@@ -13,9 +13,11 @@ const Tarefas = () => {
 
   function carregarDados() {
     // O then devolve a lista de tarefas da coleção
-    getTarefas().then((resultados) => {
-      setTarefas(resultados)
-    })
+    if(usuario) {
+      getTarefasUsuario(usuario.uid).then((resultados) => {
+        setTarefas(resultados)
+      })
+    }
   }
 
   function deletarTarefa(id) {
