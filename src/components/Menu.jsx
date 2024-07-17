@@ -29,6 +29,7 @@ const Menu = ({ usuario }) => {
 						{!usuario && <Link className="nav-link" to='/login'>Login</Link>}
 						{!usuario && <Link className="nav-link" to='/cadastro'>Cadastro</Link>}
 						<Link className="nav-link" to='ajuda'>Ajuda</Link>
+						{usuario && <span className="nav-link text-light">{usuario.displayName}</span>}
 						{usuario && <Button variant="outline-light" onClick={handleLogout}>Sair</Button>}
 					</Nav>
 				</Navbar.Collapse>
