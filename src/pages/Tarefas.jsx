@@ -39,6 +39,14 @@ const Tarefas = () => {
     return <Navigate to="/login" />
   }
 
+  const categorias = {
+    'Estudos': 'primary',
+    'Trabalho': 'info',
+    'Projetos': 'secondary',
+    'Lazer': 'success',
+    'Outros': 'danger'
+  }
+
   return (
     <main>
       <Container className="mt-5 d-flex flex-column align-items-center justify-content-center">
@@ -53,7 +61,7 @@ const Tarefas = () => {
                 <Card.Title>{tarefa.titulo}</Card.Title>
                 <Card.Text>{tarefa.descricao}</Card.Text>
                 {tarefa.dataConclusao && <Card.Text>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</Card.Text>}
-                <Badge bg="info">{tarefa.categoria}</Badge>
+                <Badge bg={categorias[tarefa.categoria]}>{tarefa.categoria}</Badge>
                 <div className="mb-2">
                   {tarefa.concluido ? <Badge bg="success">Concluído</Badge> : <Badge bg="warning">Pendente</Badge>}
                 </div>
