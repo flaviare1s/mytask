@@ -37,25 +37,25 @@ const NovaTarefa = () => {
       <form className="form-section" onSubmit={handleSubmit(salvarTarefa)}>
         <h1>Adicionar Nova Tarefa</h1>
         <hr />
-        <div>
+        <div className="mb-2">
           <label htmlFor="titulo">Título</label>
           <input type="text" id="titulo" className="form-control" {...register('titulo', { required: true, maxLength: 200 })} />
           {errors.titulo && <small className="text-danger">O título é inválido</small>}
         </div>
-        <div>
-          <label htmlFor="descricao">Descricão</label>
+        <div className="mb-2">
+          <label htmlFor="descricao">Descrição</label>
           <textarea id="descricao" className="form-control" {...register('descricao', { required: true })} />
           {errors.descricao && <small className="text-danger">Você precisa adicionar uma descrição</small>}
         </div>
-        <div>
-          <label htmlFor="dataConclusao"></label>
+        <div className="mb-2">
+          <label htmlFor="dataConclusao">Data de Conclusão</label>
           <input type="date" id="dataConclusao" className="form-control" {...register('dataConclusao')} />
         </div>
-        <div className="form-check">
+        <div className="form-check mb-2">
           <input type="checkbox" id="concluido" className="form-check-input" {...register('concluido')} />
           <label htmlFor="concluido" className="form-check-label">Concluído?</label>
         </div>
-        <div>
+        <div className="mb-2">
           <label htmlFor="categoria">Categoria</label>
           <select id="categoria" className="form-select" {...register('categoria')}>
             <option value="Trabalho">Trabalho</option>

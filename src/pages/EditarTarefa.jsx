@@ -50,7 +50,7 @@ function EditarTarefa() {
       <form className="form-section" onSubmit={handleSubmit(atualizarTarefa)}>
         <h1>Editar tarefa</h1>
         <hr />
-        <div>
+        <div className="mb-2">
           <label htmlFor="titulo">Título</label>
           <input
             type="text"
@@ -62,7 +62,7 @@ function EditarTarefa() {
             <small className="text-danger">O título é inválido!</small>
           )}
         </div>
-        <div>
+        <div className="mb-2">
           <label htmlFor="descricao">Descrição</label>
           <textarea
             id="descricao"
@@ -73,8 +73,8 @@ function EditarTarefa() {
             <small className="text-danger">A descrição é inválida!</small>
           )}
         </div>
-        <div>
-          <label htmlFor="dataConclusao">Data</label>
+        <div className="mb-2">
+          <label htmlFor="dataConclusao">Data de Conclusão</label>
           <input
             type="date"
             id="dataConclusao"
@@ -82,7 +82,7 @@ function EditarTarefa() {
             {...register("dataConclusao")}
           />
         </div>
-        <div className="form-check">
+        <div className="form-check mb-2">
           <input
             type="checkbox"
             id="concluido"
@@ -93,7 +93,7 @@ function EditarTarefa() {
             Concluído?
           </label>
         </div>
-        <div>
+        <div className="mb-2">
           <label htmlFor="categoria">Categoria</label>
           <select
             id="categoria"
