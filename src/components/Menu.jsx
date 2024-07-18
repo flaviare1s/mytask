@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { logout } from "../firebase/auth"
 import { useContext } from "react"
 import { UserContext } from "../contexts/UserContext"
+import logo from "../assets/logo.jpg"
 
 // Link => esse componente habilita o SPA (Single Page Application)
 // OBS.: Se houver links externos, utilize a tag a e não o Link
@@ -23,7 +24,7 @@ const Menu = () => {
      <Navbar bg='dark' variant="dark" expand="sm">
       <Container fluid>
 				<Link to='/'>
-					<img src="https://cdn.pixabay.com/photo/2017/09/29/00/30/checkmark-icon-2797531_640.png" width="32"/>
+					<img className="rounded-circle" src={logo} width="32"/>
 				</Link>
 				<Navbar.Toggle />
 				<Navbar.Collapse>
@@ -31,7 +32,7 @@ const Menu = () => {
 						{usuario && <Link className="nav-link" to='/tarefas'>Tarefas</Link>}
 						{!usuario && <Link className="nav-link" to='/login'>Login</Link>}
 						{!usuario && <Link className="nav-link" to='/cadastro'>Cadastro</Link>}
-						<Link className="nav-link" to='ajuda'>Ajuda</Link>
+						<Link className="nav-link" to='ajuda'>Sobre</Link>
 						{usuario && <span className="nav-link text-light">{usuario.displayName}</span>}
 						{usuario && <Button variant="outline-light" onClick={handleLogout}>Sair</Button>}
 					</Nav>

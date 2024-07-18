@@ -46,7 +46,7 @@ function EditarTarefa() {
   }
 
   return (
-    <main>
+    <main className="mt-3 mb-5">
       <form className="form-section" onSubmit={handleSubmit(atualizarTarefa)}>
         <h1>Editar tarefa</h1>
         <hr />
@@ -59,7 +59,7 @@ function EditarTarefa() {
             {...register("titulo", { required: true, maxLength: 200 })}
           />
           {errors.titulo && (
-            <small className="invalid">O título é inválido!</small>
+            <small className="text-danger">O título é inválido!</small>
           )}
         </div>
         <div>
@@ -70,7 +70,7 @@ function EditarTarefa() {
             {...register("descricao", { required: true })}
           ></textarea>
           {errors.descricao && (
-            <small className="invalid">A descrição é inválida!</small>
+            <small className="text-danger">A descrição é inválida!</small>
           )}
         </div>
         <div>

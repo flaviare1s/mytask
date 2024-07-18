@@ -1,5 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+body {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
 .form-section {
   width: 320px;
   margin: 16px auto;
@@ -8,3 +13,5 @@
 .invalid {
   color: red;
 }
+
+

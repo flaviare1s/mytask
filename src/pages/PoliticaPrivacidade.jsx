@@ -1,13 +1,15 @@
 import { Tabs, Tab, Container } from 'react-bootstrap'
 const PoliticaPrivacidade = () => {
   return (
-    <section>
+    <section className='mt-3 mb-5'>
       <Container fluid>
         <Tabs defaultActiveKey="sobre" id="uncontrolled-tab-example" className="mb-3">
           <Tab eventKey="sobre" title="Sobre">
-            <h3>Última atualização: 11 de julho de 2024</h3>
+            <h3>Última atualização: 18 de julho de 2024</h3>
 
             <p>Bem-vindo ao MyTask, seu organizador de tarefas confiável. A sua privacidade é importante para nós. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você utiliza nosso site e serviços.</p>
+
+            <strong className='text-danger'>OBS: Essa é uma página fictícia. Nenhuma informação pessoal foi coletada.</strong>
 
             <ol>
               <li>Informações que Coletamos</li>
@@ -74,8 +76,7 @@ const PoliticaPrivacidade = () => {
             <h4>Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco:</h4>
 
             <h5>MyTask</h5>
-            <p>Email: contato@mytask.com</p>
-            <p>Endereço: Rua Exemplo, 123, Cidade, Estado, CEP 12345-678</p>
+            <p>Email: flaviarster@gmail.com</p>
             <hr />
 
             <p>Obrigado por escolher o MyTask. Estamos comprometidos em proteger sua privacidade e fornecer um serviço seguro e confiável.</p>

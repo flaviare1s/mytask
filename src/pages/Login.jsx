@@ -27,19 +27,19 @@ const Login = () => {
   }
 
   return (
-    <main>
+    <main className="mt-3 mb-5">
       <form className="form-section" onSubmit={handleSubmit(entrar)}>
         <h1>Login</h1>
         <hr />
-        <div>
+        <div className="mb-2">
           <label htmlFor="email">E-mail</label>
           <input type="email" id="email" className="form-control" {...register('email', {required: 'E-mail obrigatório', pattern: {value: /[\w.-]+@[\w-]+\.[\w-.]+/gi, message: 'E-mail inválido'}})} />
-          {errors.email && <small className="invalid">{errors.email.message}</small>}
+          {errors.email && <small className="text-danger">{errors.email.message}</small>}
         </div>
-        <div>
+        <div className="mb-2">
           <label htmlFor="senha">Senha</label>
           <input type="password" id="senha" className="form-control" {...register('senha', {required: 'A senha é obrigatória', minLength: {value: 6, message: 'Minimo 6 caracteres'}})} />
-          {errors.senha && <small className="invalid">{errors.senha.message}</small>}
+          {errors.senha && <small className="text-danger">{errors.senha.message}</small>}
         </div>
         <Button variant="dark" className="mt-1 w-100" type="submit">Entrar</Button>
         <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Entrar com o Google</Button>

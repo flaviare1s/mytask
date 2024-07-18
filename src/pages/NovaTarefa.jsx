@@ -33,19 +33,19 @@ const NovaTarefa = () => {
   }
 
   return (
-    <main>
+    <main className="mt-3 mb-5">
       <form className="form-section" onSubmit={handleSubmit(salvarTarefa)}>
         <h1>Adicionar Nova Tarefa</h1>
         <hr />
         <div>
           <label htmlFor="titulo">Título</label>
           <input type="text" id="titulo" className="form-control" {...register('titulo', { required: true, maxLength: 200 })} />
-          {errors.titulo && <small className="invalid">O título é inválido</small>}
+          {errors.titulo && <small className="text-danger">O título é inválido</small>}
         </div>
         <div>
           <label htmlFor="descricao">Descricão</label>
           <textarea id="descricao" className="form-control" {...register('descricao', { required: true })} />
-          {errors.descricao && <small className="invalid">Você precisa adicionar uma descrição</small>}
+          {errors.descricao && <small className="text-danger">Você precisa adicionar uma descrição</small>}
         </div>
         <div>
           <label htmlFor="dataConclusao"></label>

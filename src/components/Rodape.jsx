@@ -3,10 +3,10 @@ import { Container } from "react-bootstrap"
 
 const Rodape = () => {
   return (
-    <footer className="mt-5">
-      <Container fluid className="text-center bg-dark">
-        <p className="text-light">&copy; 2024. MyTask. Todos os direitos reservados.</p>
-        <Link className="text-light" to='/politicaprivacidade'>Veja nossa política de privacidade clicando aqui!</Link>
+    <footer>
+      <Container fluid className="text-center bg-dark py-3">
+        <small className="text-secondary">&copy; 2024. MyTask. Todos os direitos reservados. </small>
+        <Link className="text-secondary text-decoration-none small" to='/politicaprivacidade'>Veja nossa política de privacidade clicando aqui!</Link>
       </Container>
     </footer>
   )
