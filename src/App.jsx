@@ -45,17 +45,19 @@ const App = () => {
         <UserContext.Provider value={ usuarioLogado }>
           <HashRouter>
             <Menu />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/cadastro' element={<Cadastro />} />
-              <Route path='/ajuda' element={<Ajuda />} />
-              <Route path='/tarefas' element={<Tarefas />} />
-              <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
-              <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
-              <Route path='/politicaprivacidade' element={<PoliticaPrivacidade />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
+            <div className="main">
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/cadastro' element={<Cadastro />} />
+                <Route path='/ajuda' element={<Ajuda />} />
+                <Route path='/tarefas' element={<Tarefas />} />
+                <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
+                <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
+                <Route path='/politicaprivacidade' element={<PoliticaPrivacidade />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+            </div>
             <Rodape />
           </HashRouter>
           <Toaster position="bottom-right" />

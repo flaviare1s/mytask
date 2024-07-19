@@ -10,8 +10,7 @@ body {
   margin: 16px auto;
 }
 
-.invalid {
-  color: red;
+.main {
+  min-height: 85vh;
 }
-
 
