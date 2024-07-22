@@ -46,14 +46,14 @@ const Tarefas = () => {
   }
 
   useEffect(() => {
-    if(usuario) {
-      if(categoriaSelecionada === 'Todas') {
+    if (usuario) {
+      if (categoriaSelecionada === 'Todas') {
         carregarDados()
-    } else {
-      getTarefasCategoria(usuario.uid, categoriaSelecionada).then(resultados => setTarefas(resultados))
+      } else {
+        getTarefasCategoria(usuario.uid, categoriaSelecionada).then(resultados => setTarefas(resultados))
+      }
     }
-  }
- }, [categoriaSelecionada]);
+  }, [categoriaSelecionada]);
 
   useEffect(() => {
     filtrarStatus();
@@ -83,33 +83,35 @@ const Tarefas = () => {
 
   return (
     <main className="mb-5">
-      <div className="m-3 d-flex justify-content-evenly align-items-center flex-wrap gap-3">
-        <div className="d-flex align-items-center gap-2">
-          <div>
-            <input type="checkbox" id="concluidos" checked={statusConcluido} onChange={() => setStatusConcluido(prev => !prev)} className="form-check-input" />
-            <label htmlFor="concluidos" className="form-check-label ms-2">Concluídas</label>
-          </div>
-          <div>
-            <input type="checkbox" id="pendentes" checked={statusPendente} onChange={() => setStatusPendente(prev => !prev)} className="form-check-input" />
-            <label htmlFor="pendentes" className="form-check-label ms-2">Pendentes</label>
-          </div>
-        </div>
-        <div className='d-flex align-items-center justify-content-center gap-2'>
-          <h6>Filtrar por Categoria:</h6>
-          <select onChange={e => filtrarCategoria(e.target.value)}>
-            <option value="Todas">Todas</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Estudos">Estudos</option>
-            <option value="Projetos">Projetos</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Outros">Outros</option>
-          </select>
-        </div>
-      </div>
       <Container className="mt-3">
         <h1 className="text-center">Suas tarefas</h1>
         <hr />
-        {tarefas ? 
+        <div className="m-3 d-flex justify-content-evenly align-items-center flex-wrap gap-3">
+          <div className="d-flex align-items-center gap-2">
+            <div>
+              <input type="checkbox" id="concluidos" checked={statusConcluido} onChange={() => setStatusConcluido(prev => !prev)} className="form-check-input" />
+              <label htmlFor="concluidos" className="form-check-label ms-2">Concluídas</label>
+            </div>
+            <div>
+              <input type="checkbox" id="pendentes" checked={statusPendente} onChange={() => setStatusPendente(prev => !prev)} className="form-check-input" />
+              <label htmlFor="pendentes" className="form-check-label ms-2">Pendentes</label>
+            </div>
+          </div>
+          <div className='d-flex align-items-center justify-content-center gap-2'>
+            <h6>Filtrar por Categoria:</h6>
+            <select onChange={e => filtrarCategoria(e.target.value)}>
+              <option value="Todas">Todas</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Estudos">Estudos</option>
+              <option value="Projetos">Projetos</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+          <Link className="btn btn-outline-light" to="/tarefas/adicionar">Nova Tarefa</Link>
+        </div>
+        <hr />
+        {tarefas ?
           <Row xs={1} md={2} lg={3} className="g-4">
             {tarefas.map((tarefa) => (
               <Col key={tarefa.id}>
@@ -136,9 +138,6 @@ const Tarefas = () => {
           :
           <Loader className="mt-5" />
         }
-        <div className="d-flex justify-content-center">
-          <Link className="btn btn-outline-light mt-3" to="/tarefas/adicionar">Nova Tarefa</Link>
-        </div>
       </Container>
     </main>
   );
