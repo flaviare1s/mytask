@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { deleteTarefa, getTarefasStatus, getTarefasUsuario } from "../firebase/tarefa";
+import { deleteTarefa, getTarefasCategoria, getTarefasStatus, getTarefasUsuario } from "../firebase/tarefa";
 import { useContext, useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import toast from "react-hot-toast";
@@ -13,6 +13,7 @@ const Tarefas = () => {
   const navigate = useNavigate();
   const [statusConcluido, setStatusConcluido] = useState(false);
   const [statusPendente, setStatusPendente] = useState(false);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState('Todas');
 
   function carregarDados() {
     if (usuario) {
@@ -39,6 +40,20 @@ const Tarefas = () => {
       }
     }
   }
+
+  function filtrarCategoria(categoria) {
+    setCategoriaSelecionada(categoria);
+  }
+
+  useEffect(() => {
+    if(usuario) {
+      if(categoriaSelecionada === 'Todas') {
+        carregarDados()
+    } else {
+      getTarefasCategoria(usuario.uid, categoriaSelecionada).then(resultados => setTarefas(resultados))
+    }
+  }
+ }, [categoriaSelecionada]);
 
   useEffect(() => {
     filtrarStatus();
@@ -68,7 +83,7 @@ const Tarefas = () => {
 
   return (
     <main className="mb-5">
-      <div className="m-3 d-flex justify-content-evenly align-items-center flex-wrap">
+      <div className="m-3 d-flex justify-content-evenly align-items-center flex-wrap gap-3">
         <div className="d-flex align-items-center gap-2">
           <div>
             <input type="checkbox" id="concluidos" checked={statusConcluido} onChange={() => setStatusConcluido(prev => !prev)} className="form-check-input" />
@@ -78,6 +93,17 @@ const Tarefas = () => {
             <input type="checkbox" id="pendentes" checked={statusPendente} onChange={() => setStatusPendente(prev => !prev)} className="form-check-input" />
             <label htmlFor="pendentes" className="form-check-label ms-2">Pendentes</label>
           </div>
+        </div>
+        <div className='d-flex align-items-center justify-content-center gap-2'>
+          <h6>Filtrar por Categoria:</h6>
+          <select onChange={e => filtrarCategoria(e.target.value)}>
+            <option value="Todas">Todas</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Estudos">Estudos</option>
+            <option value="Projetos">Projetos</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Outros">Outros</option>
+          </select>
         </div>
       </div>
       <Container className="mt-3">

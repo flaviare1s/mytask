@@ -60,9 +60,22 @@ export async function getTarefa(id) {
   return tarefa.data()
 }
 
-// Listar tarefas concluídas
+// Listar tarefas por status
 export async function getTarefasStatus(idUsuario, status) {
   const filtro = query(tarefasCol, where('idUsuario', '==', idUsuario), where('concluido', '==', status))
+  const snapshot = await getDocs(filtro)
+  const tarefas = []
+
+  snapshot.forEach((doc) => {
+    tarefas.push({...doc.data(), id: doc.id})
+  })
+
+  return tarefas
+}
+
+// Listar tarefas por categoria
+export async function getTarefasCategoria(idUsuario, categoria) {
+  const filtro = query(tarefasCol, where('idUsuario', '==', idUsuario), where('categoria', '==', categoria))
   const snapshot = await getDocs(filtro)
   const tarefas = []
 
