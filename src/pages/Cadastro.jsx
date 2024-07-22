@@ -44,7 +44,7 @@ const Cadastro = () => {
           <input type="password" id="senha" className="form-control" {...register('senha', {required: 'Senha obrigatória', minLength: {value: 6, message: 'Minimo 6 caracteres'}})} />
           {errors.senha && <small className="text-danger">{errors.senha.message}</small>}
         </div>
-        <Button variant="dark" className="mt-1 w-100" type="submit">Cadastrar</Button>
+        <Button variant="outline-light" className="mt-1 w-100" type="submit">Cadastrar</Button>
         <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Cadastrar com o Google</Button>
       </form>
     </main>

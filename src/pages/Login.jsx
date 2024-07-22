@@ -41,7 +41,7 @@ const Login = () => {
           <input type="password" id="senha" className="form-control" {...register('senha', {required: 'A senha é obrigatória', minLength: {value: 6, message: 'Minimo 6 caracteres'}})} />
           {errors.senha && <small className="text-danger">{errors.senha.message}</small>}
         </div>
-        <Button variant="dark" className="mt-1 w-100" type="submit">Entrar</Button>
+        <Button variant="outline-light" className="mt-1 w-100" type="submit">Entrar</Button>
         <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Entrar com o Google</Button>
       </form>
     </main>
