@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { deleteTarefa, getTarefasUsuario } from "../firebase/tarefa";
+import { deleteTarefa, getTarefasStatus, getTarefasUsuario } from "../firebase/tarefa";
 import { useContext, useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import toast from "react-hot-toast";
@@ -11,6 +11,8 @@ const Tarefas = () => {
   const [tarefas, setTarefas] = useState(null);
   const usuario = useContext(UserContext);
   const navigate = useNavigate();
+  const [statusConcluido, setStatusConcluido] = useState(false);
+  const [statusPendente, setStatusPendente] = useState(false);
 
   function carregarDados() {
     if (usuario) {
@@ -19,6 +21,28 @@ const Tarefas = () => {
       });
     }
   }
+
+  function filtrarStatus() {
+    if (usuario) {
+      if (statusConcluido && statusPendente) {
+        carregarDados();
+      } else if (statusConcluido) {
+        getTarefasStatus(usuario.uid, true).then((resultados) => {
+          setTarefas(resultados);
+        });
+      } else if (statusPendente) {
+        getTarefasStatus(usuario.uid, false).then((resultados) => {
+          setTarefas(resultados);
+        });
+      } else {
+        carregarDados();
+      }
+    }
+  }
+
+  useEffect(() => {
+    filtrarStatus();
+  }, [statusConcluido, statusPendente]);
 
   function deletarTarefa(id) {
     const deletar = window.confirm('Tem certeza?');
@@ -29,10 +53,6 @@ const Tarefas = () => {
       });
     }
   }
-
-  useEffect(() => {
-    carregarDados();
-  }, []);
 
   if (usuario === null) {
     return <Navigate to="/login" />;
@@ -48,10 +68,21 @@ const Tarefas = () => {
 
   return (
     <main className="mb-5">
+      <div className="m-3 d-flex justify-content-evenly align-items-center flex-wrap">
+        <div className="d-flex align-items-center gap-2">
+          <div>
+            <input type="checkbox" id="concluidos" checked={statusConcluido} onChange={() => setStatusConcluido(prev => !prev)} className="form-check-input" />
+            <label htmlFor="concluidos" className="form-check-label ms-2">Concluídas</label>
+          </div>
+          <div>
+            <input type="checkbox" id="pendentes" checked={statusPendente} onChange={() => setStatusPendente(prev => !prev)} className="form-check-input" />
+            <label htmlFor="pendentes" className="form-check-label ms-2">Pendentes</label>
+          </div>
+        </div>
+      </div>
       <Container className="mt-3">
         <h1 className="text-center">Suas tarefas</h1>
         <hr />
-        <Link className="btn btn-dark mb-3" to="/tarefas/adicionar">Nova Tarefa</Link>
         {tarefas ? 
           <Row xs={1} md={2} lg={3} className="g-4">
             {tarefas.map((tarefa) => (
@@ -59,13 +90,11 @@ const Tarefas = () => {
                 <Card className="h-100 card-custom">
                   <Card.Body>
                     <Card.Title>{tarefa.titulo}</Card.Title>
-                    <Card.Text>{tarefa.descricao}</Card.Text>
+                    <Card.Text><strong>Descrição: </strong> {tarefa.descricao}</Card.Text>
                     {tarefa.dataConclusao && <Card.Text>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</Card.Text>}
                     <Badge bg={categorias[tarefa.categoria]}>{tarefa.categoria}</Badge>
-                    <div className="mb-2">
-                      {tarefa.concluido ? <Badge bg="success">Concluído</Badge> : <Badge bg="warning">Pendente</Badge>}
-                    </div>
-                    <div className="btn-group" role="group">
+                    {tarefa.concluido ? <Badge className="ms-2" bg="success">Concluído</Badge> : <Badge className="ms-2" bg="warning">Pendente</Badge>}
+                    <div className="btn-group w-100 mt-3" role="group">
                       <Button className="d-flex align-items-center justify-content-center" variant="outline-dark" onClick={() => navigate(`/tarefas/editar/${tarefa.id}`)}>
                         <span className="material-symbols-outlined">edit_note</span>
                       </Button>
@@ -81,6 +110,9 @@ const Tarefas = () => {
           :
           <Loader className="mt-5" />
         }
+        <div className="d-flex justify-content-center">
+          <Link className="btn btn-outline-light mt-3" to="/tarefas/adicionar">Nova Tarefa</Link>
+        </div>
       </Container>
     </main>
   );

@@ -60,6 +60,19 @@ export async function getTarefa(id) {
   return tarefa.data()
 }
 
+// Listar tarefas concluídas
+export async function getTarefasStatus(idUsuario, status) {
+  const filtro = query(tarefasCol, where('idUsuario', '==', idUsuario), where('concluido', '==', status))
+  const snapshot = await getDocs(filtro)
+  const tarefas = []
+
+  snapshot.forEach((doc) => {
+    tarefas.push({...doc.data(), id: doc.id})
+  })
+
+  return tarefas
+}
+
 // UPDATE:
 export async function updateTarefa(id, data) {
   // Cria uma referência para um documento da coleção
