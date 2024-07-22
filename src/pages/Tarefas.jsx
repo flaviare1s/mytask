@@ -90,7 +90,7 @@ const Tarefas = () => {
                 <Card className="h-100 card-custom">
                   <Card.Body>
                     <Card.Title>{tarefa.titulo}</Card.Title>
-                    <Card.Text><strong>Descrição: </strong> {tarefa.descricao}</Card.Text>
+                    <Card.Text className="card-descricao"><strong>Descrição: </strong> {tarefa.descricao}</Card.Text>
                     {tarefa.dataConclusao && <Card.Text>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</Card.Text>}
                     <Badge bg={categorias[tarefa.categoria]}>{tarefa.categoria}</Badge>
                     {tarefa.concluido ? <Badge className="ms-2" bg="success">Concluído</Badge> : <Badge className="ms-2" bg="warning">Pendente</Badge>}

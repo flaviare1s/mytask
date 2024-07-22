@@ -107,7 +107,7 @@ function EditarTarefa() {
             <option value="Outros">Outros</option>
           </select>
         </div>
-        <Button variant="dark" className="w-100 mt-1" type="submit">
+        <Button variant="outline-light" className="w-100 mt-1" type="submit">
           Atualizar Tarefa
         </Button>
       </form>

@@ -49,7 +49,8 @@ const NovaTarefa = () => {
         </div>
         <div className="mb-2">
           <label htmlFor="dataConclusao">Data de Conclusão</label>
-          <input type="date" id="dataConclusao" className="form-control" {...register('dataConclusao')} />
+          <input type="date" id="dataConclusao" className="form-control" {...register('dataConclusao', { required: true })} />
+          {errors.dataConclusao && <small className="text-danger">Data de conclusão é obrigatória</small>}
         </div>
         <div className="form-check mb-2">
           <input type="checkbox" id="concluido" className="form-check-input" {...register('concluido')} />
@@ -65,7 +66,7 @@ const NovaTarefa = () => {
             <option value="Outros">Outros</option>
           </select>
         </div>
-        <Button variant="dark" className="mt-1 w-100" type="submit">Salvar Tarefa</Button>
+        <Button variant="outline-light" className="mt-1 w-100" type="submit">Salvar Tarefa</Button>
       </form>
     </main>
   )

@@ -1,3 +1,17 @@
 .card-custom {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !important;
+  min-height: 300px;
+}
+
+.card-descricao {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  height: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
 }
