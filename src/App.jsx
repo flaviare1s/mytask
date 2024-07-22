@@ -18,6 +18,7 @@ import { auth } from "./firebase/config"
 import { UserContext } from "./contexts/UserContext"
 import Loader from "./components/Loader"
 import { Container } from "react-bootstrap"
+import ResetarSenha from "./pages/ResetarSenha"
 
 // BrowserRouter => componente essencial para consuzir o roteamento no navegador
 
@@ -57,6 +58,7 @@ const App = () => {
                 <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
                 <Route path='/tarefas/:id' element={<Tarefa />} />
                 <Route path='/politicaprivacidade' element={<PoliticaPrivacidade />} />
+                <Route path='/resetarsenha' element={<ResetarSenha />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </div>

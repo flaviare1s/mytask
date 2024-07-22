@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap"
 import {useForm} from "react-hook-form"
 import { entrarGoogle, loginUsuario } from "../firebase/auth"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
 const Login = () => {
@@ -43,6 +43,14 @@ const Login = () => {
         </div>
         <Button variant="outline-light" className="mt-1 w-100" type="submit">Entrar</Button>
         <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Entrar com o Google</Button>
+        <div className='d-flex flex-wrap gap-2 justify-content-between mt-2'>
+          <div className=" small-actions">
+            <small>Não possui conta? <Link to="/cadastro">Criar conta</Link></small>
+          </div>
+          <div className='small-actions'>
+            <small>Esqueceu a senha? <Link to="/resetarsenha">Clique aqui</Link></small>
+          </div>
+        </div>
       </form>
     </main>
   )
