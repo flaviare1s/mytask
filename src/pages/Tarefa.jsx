@@ -42,7 +42,7 @@ const Tarefa = () => {
           {tarefa.concluido ? <Badge className="ms-2" bg="success">Concluído</Badge> : <Badge className="ms-2" bg="warning">Pendente</Badge>}
         </div>
       </div>
-      <Button variant="outline-light" className="mt-3" onClick={() => window.history.back()}>Voltar</Button>
+      <Button variant="outline-light" className="mb-3" onClick={() => window.history.back()}>Voltar</Button>
     </section>
   )
 }
