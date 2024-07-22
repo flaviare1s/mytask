@@ -117,14 +117,17 @@ const Tarefas = () => {
               <Col key={tarefa.id}>
                 <Card className="h-100 card-custom">
                   <Card.Body>
-                    <Card.Title>{tarefa.titulo}</Card.Title>
+                    <Card.Title className="text-center mb-3">{tarefa.titulo}</Card.Title>
                     <Card.Text className="card-descricao"><strong>Descrição: </strong> {tarefa.descricao}</Card.Text>
-                    {tarefa.dataConclusao && <Card.Text>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</Card.Text>}
+                    <Card.Text>Data de conclusão: {new Date(tarefa.dataConclusao).toLocaleDateString()}</Card.Text>
                     <Badge bg={categorias[tarefa.categoria]}>{tarefa.categoria}</Badge>
                     {tarefa.concluido ? <Badge className="ms-2" bg="success">Concluído</Badge> : <Badge className="ms-2" bg="warning">Pendente</Badge>}
                     <div className="btn-group w-100 mt-3" role="group">
                       <Button className="d-flex align-items-center justify-content-center" variant="outline-dark" onClick={() => navigate(`/tarefas/editar/${tarefa.id}`)}>
                         <span className="material-symbols-outlined">edit_note</span>
+                      </Button>
+                      <Button className="d-flex align-items-center justify-content-center" variant="outline-secondary" onClick={() => navigate(`/tarefas/${tarefa.id}`)}>
+                        <span className="material-symbols-outlined">visibility</span>
                       </Button>
                       <Button className="d-flex align-items-center justify-content-center" variant="outline-danger" onClick={() => deletarTarefa(tarefa.id)}>
                         <span className="material-symbols-outlined">delete</span>

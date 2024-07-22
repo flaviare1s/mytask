@@ -9,6 +9,7 @@ import NovaTarefa from "./pages/NovaTarefa"
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import Tarefas from "./pages/Tarefas"
+import Tarefa from "./pages/Tarefa"
 import { Toaster } from "react-hot-toast"
 import EditarTarefa from "./pages/EditarTarefa"
 import { useEffect, useState } from "react"
@@ -54,6 +55,7 @@ const App = () => {
                 <Route path='/tarefas' element={<Tarefas />} />
                 <Route path='/tarefas/adicionar' element={<NovaTarefa />} />
                 <Route path='/tarefas/editar/:id' element={<EditarTarefa />} />
+                <Route path='/tarefas/:id' element={<Tarefa />} />
                 <Route path='/politicaprivacidade' element={<PoliticaPrivacidade />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
