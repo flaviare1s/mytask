@@ -9,8 +9,6 @@ const PoliticaPrivacidade = () => {
 
             <p>Bem-vindo ao MyTask, seu organizador de tarefas confiável. A sua privacidade é importante para nós. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você utiliza nosso site e serviços.</p>
 
-            <strong className='text-danger'>OBS: Essa é uma página fictícia. Nenhuma informação pessoal foi coletada.</strong>
-
             <ol>
               <li>Informações que Coletamos</li>
 
