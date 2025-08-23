@@ -67,7 +67,7 @@ const PoliticaPrivacidade = () => {
 
               <li>Alterações a Esta Política de Privacidade</li>
 
-              <p>Podemos atualizar esta Política de Privacidade de tempos em tempos. Publicaremos quaisquer alterações nesta página e atualizaremos a data da "Última atualização" acima. Recomendamos que você revise esta política periodicamente para se manter informado sobre como estamos protegendo suas informações.</p>
+              <p>Podemos atualizar esta Política de Privacidade de tempos em tempos. Publicaremos quaisquer alterações nesta página e atualizaremos a data da Última atualização acima. Recomendamos que você revise esta política periodicamente para se manter informado sobre como estamos protegendo suas informações.</p>
             </ol>
           </Tab>
           <Tab eventKey="contato" title="Contato">
